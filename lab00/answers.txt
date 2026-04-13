@@ -1,4 +1,8 @@
-1.first_set_findi_1
-2.first_set_top_2
-3.first_set_exit_3
-4.first_set_Diff_4
+1.second_set_mv_2
+2.second_set_chmod_2
+3.second_set_pwd_2
+4.second_set_ping_2
+5.first_set_findi_1
+6.first_set_top_2
+7.first_set_exit_3
+8.first_set_Diff_4
