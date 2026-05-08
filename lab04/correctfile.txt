@@ -1,0 +1,35 @@
+j. syntax error at line 81:
+        before modification:       la a0, 8(s0)
+        after modification:        lw a0, 8(s0)
+
+2. wrong way of loading the address instruction at line 69
+        before modification:       add t1, s0, x0       # in this way, we get the address of node
+        after modification:        lw t1, 0(s0)         # in this way, we get the address of array, an element of node
+
+3. wrong way of loading the mystery function address at line 82:
+        before modification:       lw  a1, 0(s1)
+        after modification:        mv a1, s1
+
+4. no saving context stuff before calling mystery function inside main function at the line 75:
+        before modification:       # nothing here
+				   jalr s1
+				   # nothing here
+
+        after modification:        addi sp, sp, -16
+				   sw t0, 0(sp)
+				   sw t1, 4(sp)
+				   sw t2, 8(sp)
+				   sw t3, 12(sp)
+
+				   jalr s1
+
+			  	   lw t0, 0(sp)
+				   lw t1, 4(sp)
+				   lw t2, 8(sp)
+				   lw t3, 12(sp)
+				   addi sp, sp, 16
+
+5. incorrext offset to array base address at line 72:
+        before modification:        add t2, t2, t1
+        after modification:         slli t3, t1, 2
+				    add t2, t2, ,t3 
